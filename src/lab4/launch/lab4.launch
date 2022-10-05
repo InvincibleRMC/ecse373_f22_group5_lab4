@@ -1,7 +1,4 @@
 <launch>
-
-    <node name="lab4" type="lab4" pkg="lab4" ns="robot0">
-    </node>
-    
+    <include file="$(find lab4)/launch/node.launch"/>
     <include file="$(find stdr_launchers)/launch/server_with_map_and_gui.launch"/>
 </launch>

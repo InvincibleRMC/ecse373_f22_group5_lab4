@@ -19,20 +19,19 @@ void lidarCallback(const sensor_msgs::LaserScan msg){
 void velocityCallback(const geometry_msgs::Twist msg){
     
     if(enteredLidar==1){
-    ROS_ERROR("velocityCallback");
+    ROS_INFO("velocityCallback");
     float x = msg.linear.x;
 
     if(x>0){
         
         int i = lidar_msg.ranges.size()/2;
-
         float distance_ahead = lidar_msg.ranges[i];
-        ROS_ERROR("%f",distance_ahead);
+        ROS_INFO("%f",distance_ahead);
         if(distance_ahead > 1){
             cmd_vel.publish(msg);
         }
         else{
-            ROS_ERROR("Wall Detected!!");
+            ROS_INFO("Wall Detected!!");
             output_msg = msg;
             output_msg.linear.x=0;
             cmd_vel.publish(output_msg);
@@ -47,7 +46,7 @@ void velocityCallback(const geometry_msgs::Twist msg){
 
 
 int main(int argc, char* argv[]) {
-    ROS_ERROR("Starting up NODE!!");
+    ROS_INFO("Starting up NODE!!");
     ros::init(argc, argv, "lab4"); 
     ros::NodeHandle nh;
     
